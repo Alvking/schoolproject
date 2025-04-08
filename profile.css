@@ -1,0 +1,422 @@
+/* General Styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Profile Container */
+.profile-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h2 {
+    color: #1a73e8;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 600;
+    border-bottom: 2px solid #e8eaed;
+    padding-bottom: 15px;
+}
+
+h3 {
+    color: #202124;
+    margin: 25px 0 20px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+h4 {
+    color: #5f6368;
+    margin: 15px 0 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Sections */
+.exercises-section,
+.goals-section,
+.communication-section {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.exercises-section:hover,
+.goals-section:hover,
+.communication-section:hover {
+    transform: translateY(-2px);
+}
+
+/* Exercise Items */
+.exercise-list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.exercise-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e8eaed;
+    transition: all 0.3s ease;
+}
+
+.exercise-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+}
+
+.exercise-type {
+    color: #1a73e8;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.exercise-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 15px 0;
+}
+
+.stat-item {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e8eaed;
+    font-size: 0.95em;
+}
+
+.exercise-date {
+    color: #5f6368;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+/* Goals Section */
+.goal-item {
+    background: #f8f9fa;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    border: 1px solid #e8eaed;
+    transition: all 0.3s ease;
+}
+
+.goal-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+}
+
+.goal-item h4 {
+    color: #1a73e8;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.goal-details {
+    display: grid;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.goal-details p {
+    color: #5f6368;
+    margin: 0;
+    font-size: 0.95em;
+}
+
+.goal-details p strong {
+    color: #202124;
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.goal-date {
+    color: #5f6368;
+    font-size: 0.9em;
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px 12px;
+    background: #e8eaed;
+    border-radius: 15px;
+}
+
+/* Communication Section */
+.communication-section {
+    margin: 2rem 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.comments-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.comment-bubble {
+    display: flex;
+    margin: 8px 0;
+    max-width: 80%;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-sent {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.message-received {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.message-content {
+    padding: 12px 15px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.message-sent .message-content {
+    background-color: #e9ecef;
+    color: #212529;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 15px;
+}
+
+.message-sent .message-content::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    bottom: 0;
+    width: 15px;
+    height: 15px;
+    background: #e9ecef;
+    clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+.message-received .message-content {
+    background-color: #4CAF50;
+    color: white;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 15px;
+}
+
+.message-received .message-content::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    bottom: 0;
+    width: 15px;
+    height: 15px;
+    background: #4CAF50;
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
+}
+
+.message-time {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 6px;
+    opacity: 0.8;
+}
+
+.message-sent .message-time {
+    color: #6c757d;
+    text-align: left;
+}
+
+.message-received .message-time {
+    color: rgba(255, 255, 255, 0.9);
+    text-align: right;
+}
+
+.no-comments {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 20px;
+}
+
+.comment-form {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.comment-form textarea {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    resize: none;
+    min-height: 45px;
+    font-family: inherit;
+    font-size: 0.95em;
+    transition: all 0.3s ease;
+}
+
+.comment-form textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.comment-form button {
+    padding: 12px 25px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.comment-form button:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.comment-form button:active {
+    transform: translateY(0);
+}
+
+/* Custom scrollbar */
+.comments-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.comments-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.comments-list::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+.nutritionist-info {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nutritionist-info h4 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+/* Buttons */
+.btn,
+.comment-form button[type="submit"] {
+    background-color: #1a73e8;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover,
+.comment-form button[type="submit"]:hover {
+    background-color: #1557b0;
+    box-shadow: 0 2px 10px rgba(26, 115, 232, 0.3);
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .profile-container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .exercise-list {
+        grid-template-columns: 1fr;
+    }
+
+    .exercise-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .comment {
+        margin: 10px 0;
+    }
+
+    .comment.nutritionist-comment {
+        margin-left: 10px;
+    }
+
+    .comment.user-comment {
+        margin-right: 10px;
+    }
+
+    .btn,
+    .comment-form button[type="submit"] {
+        width: 100%;
+        margin: 10px 0;
+    }
+}

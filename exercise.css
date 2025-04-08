@@ -1,0 +1,258 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: rgb(238, 232, 232);
+    color: black;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.nav-bar {
+    background: rgba(8, 8, 8, 0.8);
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    list-style: none;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.nav-bar li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-bar a:hover {
+    background: red;
+    box-shadow: 0px 0px 10px rgba(255, 30, 0, 0.8)
+}
+/* Container */
+.container {
+    width: 60%;
+    background: rgb(248, 245, 245);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: scale(1.02);
+}
+
+.section-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Exercise Grid Layout */
+.exercise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Form Styling */
+.exercise-form-container {
+    background: rgba(6, 241, 230, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.exercise-form-container h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: black;
+}
+
+.form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.322);
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #ffeb3b;
+    box-shadow: 0px 0px 10px rgba(255, 235, 59, 0.8);
+}
+
+/* Optional Fields */
+.optional-fields {
+    margin-top: 20px;
+}
+
+.optional-fields h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Submit Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: rgb(11, 125, 219);
+    color: black;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(255, 165, 0, 0.5);
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: rgba(0, 0, 255, 0.801);
+    color: black;
+    border: 2px solid #00ccff;
+}
+
+/* Success & Error Messages */
+.success, .error {
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.success {
+    background-color: #28a745;
+    color: white;
+}
+
+.error {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Recent Exercises */
+.exercise-history {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.exercise-history h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.exercise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.exercise-item {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.exercise-type {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.exercise-stats {
+    margin-top: 10px;
+}
+
+.stat-item {
+    font-size: 14px;
+    color: black;
+}
+
+.exercise-date {
+    margin-top: 10px;
+    font-size: 12px;
+    color: black;
+}
+
+/* Back Link */
+.back-link {
+    margin-top: 20px;
+}
+
+.back-link a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.back-link a:hover {
+    background: white;
+    color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .container {
+        width: 80%;
+    }
+    .exercise-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+}
