@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Insert Progress Photos
     if ($front_photo || $side_photo || $back_photo) {
-        $stmt = $conn->prepare("INSERT INTO progress_photo (user_id, date, front_photo, side_photo, back_photo, uploaded_at) VALUES (?, ?, ?, ?, ?, NOW())");
+        $stmt = $conn->prepare("INSERT INTO progress_photos (user_id, date, front_photo, side_photo, back_photo, uploaded_at) VALUES (?, ?, ?, ?, ?, NOW())");
         $stmt->bind_param("issss", $user_id, $date, $front_photo, $side_photo, $back_photo);
         $stmt->execute();
         $stmt->close();

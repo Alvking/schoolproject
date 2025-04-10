@@ -145,18 +145,7 @@ mysqli_close($conn);
             </div>
         </header>
 
-        <div class="search-filter-section">
-            <form method="GET" class="search-form">
-                <input type="text" name="search" placeholder="Search by name, email, or ID..." value="<?php echo htmlspecialchars($search); ?>">
-                <select name="status">
-                    <option value="all" <?php echo $status_filter === 'all' ? 'selected' : ''; ?>>All Users</option>
-                    <option value="active" <?php echo $status_filter === 'active' ? 'selected' : ''; ?>>Active Users</option>
-                    <option value="inactive" <?php echo $status_filter === 'inactive' ? 'selected' : ''; ?>>Inactive Users</option>
-                </select>
-                <button type="submit">Search</button>
-            </form>
-        </div>
-
+      
         <table class="user-table">
             <thead>
                 <tr>

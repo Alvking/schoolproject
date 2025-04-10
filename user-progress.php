@@ -36,7 +36,30 @@ if ($user_id > 0) {
     }
 }
 
-mysqli_close($conn);
+
+
+// Retrieve progress photos
+$photo_query = $conn->prepare("SELECT * FROM progress_photos WHERE user_id = ? ORDER BY date DESC");
+$photo_query->bind_param("i", $user_id);
+$photo_query->execute();
+$photo_result = $photo_query->get_result();
+
+echo "<h2>Progress Photos</h2>";
+while ($photo = $photo_result->fetch_assoc()) {
+    echo "<div class='photo-entry'>";
+    echo "<strong>Date:</strong> " . $photo['date'] . "<br>";
+    if (!empty($photo['front_photo'])) {
+        echo "<img src='" . htmlspecialchars($photo['front_photo']) . "' alt='Front Photo' style='max-width:200px;'><br>";
+    }
+    if (!empty($photo['side_photo'])) {
+        echo "<img src='" . htmlspecialchars($photo['side_photo']) . "' alt='Side Photo' style='max-width:200px;'><br>";
+    }
+    if (!empty($photo['back_photo'])) {
+        echo "<img src='" . htmlspecialchars($photo['back_photo']) . "' alt='Back Photo' style='max-width:200px;'><br>";
+    }
+   
+}
+$photo_query->close();
 ?>
 
 <!DOCTYPE html>

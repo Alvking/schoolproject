@@ -19,6 +19,17 @@
                 document.getElementById("myDropdown").classList.remove("show");
             }
         };
+
+
+        function checkAuth(event, page){
+            event.preventDefault();
+            if(!localStorage.getItem('token')){
+                alert("Please log in to access this page.");
+                window.location.href = "login.php";
+            } else {
+                window.location.href = page;
+            }
+        }
     </script>
 
 </head>
@@ -52,25 +63,25 @@
         <div class="features">
             <h3>GOAL SETTING</h3>
             <p>Set, monitor, and achieve SMART fitness goals with our fitness tracker. Track weight, muscle, endurance, and activity levels.</p>
-            <a href="./goal.php"><button>GET STARTED</button></a>
+            <a href="./goal.php" onclick="checkAuth(event, page)"><button>GET STARTED</button></a>
         </div>
 
         <div class="features">
             <h3>EXERCISE TRACKING</h3>
             <p>Log your exercises, monitor progress, and stay accountable with detailed workout tracking and analytics.</p>
-            <a href="./exercise.php"><button>GET STARTED</button></a>
+            <a href="./exercise.php" onclick="checkAuth(event, page)"><button>GET STARTED</button></a>
         </div>
 
         <div class="features">
             <h3>DIET TRACKING</h3>
             <p>Maintain a balanced diet by tracking your food intake, calories, macronutrients, and meal plans.</p>
-            <a href="./diet.php"><button>GET STARTED</button></a>
+            <a href="./diet.php" onclick="checkAuth(event, page)"><button>GET STARTED</button></a>
         </div>
 
         <div class="features">
             <h3>PROGRESS INSIGHTS</h3>
             <p>Visualize your fitness journey with detailed progress tracking, graphs, and performance insights.</p>
-            <a href="./progress.php"><button>GET STARTED</button></a>
+            <a href="./progress.php" onclick="checkAuth(event, page)"><button>GET STARTED</button></a>
         </div>
     </div>
 

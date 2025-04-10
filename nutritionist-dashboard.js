@@ -1,6 +1,6 @@
 let clients = [
-    { id: 1, name: "John Doe", progress: "Completed 5 workouts this week." },
-    { id: 2, name: "Jane Smith", progress: "Improved diet and lost 2kg." }
+    { id: 1, name: "user 2", progress: "Completed 5 workouts this week." },
+    { id: 2, name: "user 3", progress: "Improved diet and lost 2kg." }
 ];
 
 function loadClients() {
