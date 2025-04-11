@@ -1,4 +1,4 @@
-/* Reset default styling */
+
 * {
     margin: 0;
     padding: 0;
@@ -15,15 +15,15 @@ body {
     height: 100vh;
 }
 
-/* Glassmorphic Login Container (Increased Size) */
+
 .login-container {
-    background: rgba(255, 255, 255, 0.2); /* Transparent white */
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(12px);
-    padding: 50px;  /* Increased padding */
+    padding: 50px;  
     border-radius: 15px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 700px;  /* Increased width */
+    width: 700px;  
     color: rgb(14, 13, 13);
     transition: all 0.3s ease-in-out;
 }
@@ -32,17 +32,17 @@ body {
     transform: scale(1.03);
 }
 
-/* Login Heading */
+
 .login-container h2 {
     margin-bottom: 25px;
     font-size: 28px;
 }
 
-/* Input Fields */
+
 .login-container label {
     display: block;
     text-align: left;
-    font-size: 16px; /* Slightly larger text */
+    font-size: 16px; 
     font-weight: bold;
     margin-bottom: 5px;
     color: rgb(12, 12, 12);
@@ -50,12 +50,12 @@ body {
 
 .login-container input {
     width: 100%;
-    padding: 14px;  /* Slightly larger input fields */
-    margin-bottom: 25px; /* More spacing */
+    padding: 14px;  
+    margin-bottom: 25px; 
     border: none;
     border-radius: 30px;
     outline: none;
-    font-size: 18px;  /* Larger text */
+    font-size: 18px;  
     background: rgba(17, 17, 17, 0.3);
     color: rgb(15, 15, 15);
     transition: 0.3s ease-in-out;
@@ -69,13 +69,13 @@ body {
     background: rgba(15, 15, 15, 0.5);
 }
 
-/* Login Button */
+
 .login-container button {
     width: 100%;
-    padding: 14px;  /* Bigger button */
+    padding: 14px;  
     border: none;
     border-radius: 30px;
-    font-size: 20px;  /* Larger button text */
+    font-size: 20px;  
     font-weight: bold;
     color: rgb(19, 18, 18);
     background: linear-gradient(to right, #1c9911, #42b10f);
@@ -88,7 +88,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Sign-up Link */
+
 .login-container p {
     margin-top: 20px;
     font-size: 16px;
@@ -105,7 +105,7 @@ body {
     color: red;
 }
 
-/* Responsive Design */
+
 @media screen and (max-width: 400px) {
     .login-container {
         width: 90%;

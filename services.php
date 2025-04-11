@@ -20,6 +20,10 @@
             }
         };
 
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'index.php';
+        }
 
         function checkAuth(event, page){
             event.preventDefault();
@@ -48,7 +52,7 @@
             <a href="#" class="nav-btn" onclick="toggleDropdown(event)">Account <i class="fa fa-caret-down"></i></a>
             <div class="dropdown-content" id="myDropdown">
                 <a href="profile.php"><i class="fa fa-user"></i>All info</a>
-                <a href="index.php"><i class="fa fa-sign-out"></i> Log out</a>
+                <a href="#" onclick="logout()"><i class="fa fa-sign-out"></i> Log out</a>
             </div>
         </div>
     </div>
@@ -63,25 +67,26 @@
         <div class="features">
             <h3>GOAL SETTING</h3>
             <p>Set, monitor, and achieve SMART fitness goals with our fitness tracker. Track weight, muscle, endurance, and activity levels.</p>
-            <a href="./goal.php" onclick="checkAuth(event, page)"><button>GET STARTED</button></a>
+            <a href="./goal.php" onclick="checkAuth(event, './goal.php')"><button>GET STARTED</button></a>
+
         </div>
 
         <div class="features">
             <h3>EXERCISE TRACKING</h3>
             <p>Log your exercises, monitor progress, and stay accountable with detailed workout tracking and analytics.</p>
-            <a href="./exercise.php" onclick="checkAuth(event, page)"><button>GET STARTED</button></a>
+            <a href="./exercise.php" onclick="checkAuth(event, './exercise.php')"><button>GET STARTED</button></a>
         </div>
 
         <div class="features">
             <h3>DIET TRACKING</h3>
             <p>Maintain a balanced diet by tracking your food intake, calories, macronutrients, and meal plans.</p>
-            <a href="./diet.php" onclick="checkAuth(event, page)"><button>GET STARTED</button></a>
+            <a href="./diet.php" onclick="checkAuth(event, './diet.php')"><button>GET STARTED</button></a>
         </div>
 
         <div class="features">
             <h3>PROGRESS INSIGHTS</h3>
             <p>Visualize your fitness journey with detailed progress tracking, graphs, and performance insights.</p>
-            <a href="./progress.php" onclick="checkAuth(event, page)"><button>GET STARTED</button></a>
+            <a href="./progress.php" onclick="checkAuth(event, './progress.php')"><button>GET STARTED</button></a>
         </div>
     </div>
 
@@ -109,6 +114,6 @@
             </div>
         </div>
     </div>
-
+    
 </body>
 </html>

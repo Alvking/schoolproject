@@ -1,46 +1,45 @@
 <?php
-// Enable error reporting for debugging (Remove in production)
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Start session
 session_start();
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     die("Error: User not logged in. <a href='login.php'>Login</a>");
 }
 
-// Get the logged-in user ID
+
 $user_id = $_SESSION['user_id'];
 
-// Database credentials
+
 $servername = "localhost"; 
 $username = "root"; 
 $password = ""; 
-$dbname = "usersdb"; // Ensure this is the correct database
+$dbname = "usersdb"; 
 
-// Create database connection
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Database Connection Failed: " . $conn->connect_error);
 }
 
-// Handle form submission
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get form data & sanitize inputs
+   
     $goalType = isset($_POST['goalType']) ? trim($_POST['goalType']) : '';
     $goalTarget = isset($_POST['goalTarget']) ? floatval($_POST['goalTarget']) : 0;
     $goalDuration = isset($_POST['goalDuration']) ? intval($_POST['goalDuration']) : 0;
     $activityLevel = isset($_POST['activityLevel']) ? trim($_POST['activityLevel']) : '';
 
-    // Validate required fields
+    
     if (empty($goalType) || empty($goalTarget) || empty($goalDuration) || empty($activityLevel)) {
         echo "<script>alert('Error: All fields are required!');</script>";
     } else {
-        // Insert into database using prepared statements
+       
         $stmt = $conn->prepare("INSERT INTO goals (user_id, goal_type, goal_target, goal_duration, activity_level) 
                                 VALUES (?, ?, ?, ?, ?)");
         if (!$stmt) {
@@ -59,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Close connection
+
 $conn->close();
 ?>
 
