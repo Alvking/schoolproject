@@ -38,11 +38,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['name'] = $name;
             $_SESSION['role'] = $role;
 
-            // Set token in localStorage and redirect
+            // Set token and handle role-based redirect
             echo "<script>
                 localStorage.setItem('token', '$id');
-                window.location.href = 'services.php';
-            </script>";
+                localStorage.setItem('role', '$role');
+                ";
+            
+            // Redirect based on role
+            if ($role === 'nutritionist') {
+                echo "window.location.href = 'nutritionist-dashboard.php';";
+            } else {
+                echo "window.location.href = 'services.php';";
+            }
+            
+            echo "</script>";
             exit();
         } else {
             echo "<script>alert('Incorrect password! Please try again.'); window.location.href='login.php';</script>";

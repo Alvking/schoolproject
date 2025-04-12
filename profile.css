@@ -8,6 +8,40 @@ body {
     color: #333;
 }
 
+.nav-bar {
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    list-style: none;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.nav-bar li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.nav-bar a {
+    text-decoration: none;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-bar a:hover {
+    background: red;
+    
+}
+
+
+
+
 /* Profile Container */
 .profile-container {
     max-width: 1000px;

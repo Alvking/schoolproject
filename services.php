@@ -30,6 +30,9 @@
             if(!localStorage.getItem('token')){
                 alert("Please log in to access this page.");
                 window.location.href = "login.php";
+            } else if(localStorage.getItem('role') === 'nutritionist') {
+                alert("This page is for users only. Redirecting to nutritionist dashboard.");
+                window.location.href = "nutritionist-dashboard.php";
             } else {
                 window.location.href = page;
             }

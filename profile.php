@@ -114,6 +114,14 @@ $conn->close();
 </head>
 <body>
 
+<ul class="nav-bar">
+        <li><a href="index.php">Home</a></li>
+        <li><a href="services.php">Services</a></li>
+        <li><a href="about.php">About Us</a></li>
+        <li><a href="contact.php">Contact Us</a></li>
+    </ul>
+
+
     <div class="profile-container">
         <h2>Welcome, <?php echo htmlspecialchars($userData['user']['name'] ?? 'User'); ?></h2>
         
