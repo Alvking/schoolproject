@@ -1,5 +1,7 @@
 <?php
 session_start();
+error_reporting(0); // Disable error reporting
+ini_set('display_errors', 0); // Don't display errors
 
 // Database Connection
 $servername = "localhost";
@@ -25,6 +27,7 @@ $user_id = $_SESSION['user_id'];
 // Handle Water Intake Update
 if (isset($_POST['action']) && $_POST['action'] === 'updateWater') {
     header('Content-Type: application/json');
+    ob_clean(); // Clear any previous output
     $water_glasses = intval($_POST['glasses']); // 
 
     try {
@@ -45,24 +48,28 @@ if (isset($_POST['action']) && $_POST['action'] === 'updateWater') {
 
         if ($result->num_rows > 0) {
             // Update existing record
-            $sql = "UPDATE water_intake SET glasses = ? WHERE user_id = ? AND DATE(created_at) = CURDATE()"; // 
+            $sql = "UPDATE water_intake SET glasses = ? WHERE user_id = ? AND DATE(created_at) = CURDATE()";
+            $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                throw new Exception("Failed to prepare statement: " . $conn->error);
+            }
+            $stmt->bind_param("ii", $water_glasses, $user_id);
         } else {
             // Create new record
-            $sql = "INSERT INTO water_intake (user_id, glasses, created_at) VALUES (?, ?, NOW())"; // 
+            $sql = "INSERT INTO water_intake (user_id, glasses, created_at) VALUES (?, ?, NOW())";
+            $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                throw new Exception("Failed to prepare statement: " . $conn->error);
+            }
+            $stmt->bind_param("ii", $user_id, $water_glasses);
         }
 
-        $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            throw new Exception("Failed to prepare statement: " . $conn->error);
-        }
-
-        $stmt->bind_param("ii", $water_glasses, $user_id);
         if (!$stmt->execute()) {
             throw new Exception("Failed to execute statement: " . $stmt->error);
         }
 
         $stmt->close();
-        echo json_encode(['status' => 'success', 'message' => 'Water intake updated', 'glasses' => $water_glasses]); // 
+        echo json_encode(['status' => 'success', 'message' => 'Water intake updated', 'glasses' => $water_glasses]);
 
     } catch (Exception $e) {
         echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
@@ -73,6 +80,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'updateWater') {
 // Handle Get Water Glasses
 if (isset($_GET['action']) && $_GET['action'] === 'getWater') {
     header('Content-Type: application/json');
+    ob_clean(); // Clear any previous output
     try {
         $sql = "SELECT glasses FROM water_intake WHERE user_id = ? AND DATE(created_at) = CURDATE()"; // 
         $stmt = $conn->prepare($sql);
@@ -102,44 +110,46 @@ if (isset($_GET['action']) && $_GET['action'] === 'getWater') {
 }
 
 // Handle Meal Logging (POST request)
-if ($_SERVER["REQUEST_METHOD"] == "POST" && !isset($_POST['action'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['action'] === 'logMeal') {
+    header('Content-Type: application/json');
+    ob_clean(); // Clear any previous output
+    
     if (empty($_POST['mealType']) || empty($_POST['foodItem']) || empty($_POST['servingSize'])) {
-        header('Content-Type: application/json');
         echo json_encode(['status' => 'error', 'message' => 'Missing required fields']);
         exit;
     }
 
-    // Sanitize input
-    $meal_type = $conn->real_escape_string($_POST['mealType']);
-    $food_item = $conn->real_escape_string($_POST['foodItem']);
-    $serving_size = floatval($_POST['servingSize']);
-    $calories = floatval($_POST['calories']);
-    $protein = floatval($_POST['protein']);
-    $carbs = floatval($_POST['carbs']);
-    $fat = floatval($_POST['fat']);
+    try {
+        // Sanitize input
+        $meal_type = $conn->real_escape_string($_POST['mealType']);
+        $food_item = $conn->real_escape_string($_POST['foodItem']);
+        $serving_size = floatval($_POST['servingSize']);
+        $calories = floatval($_POST['calories']);
+        $protein = floatval($_POST['protein']);
+        $carbs = floatval($_POST['carbs']);
+        $fat = floatval($_POST['fat']);
 
-    // Insert meal data into the meals table
-    $sql = "INSERT INTO meals (user_id, meal_type, food_item, serving_size, calories, protein, carbs, fat, created_at) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+        // Insert meal data into the meals table
+        $sql = "INSERT INTO meals (user_id, meal_type, food_item, serving_size, calories, protein, carbs, fat, created_at) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
-    $stmt = $conn->prepare($sql);
-    if (!$stmt) {
-        header('Content-Type: application/json');
-        echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $conn->error]);
-        exit;
+        $stmt = $conn->prepare($sql);
+        if (!$stmt) {
+            throw new Exception("Failed to prepare statement: " . $conn->error);
+        }
+
+        $stmt->bind_param("issddddd", $user_id, $meal_type, $food_item, $serving_size, $calories, $protein, $carbs, $fat);
+
+        if ($stmt->execute()) {
+            echo json_encode(['status' => 'success', 'message' => 'Meal logged successfully']);
+        } else {
+            throw new Exception("Could not log the meal: " . $stmt->error);
+        }
+
+        $stmt->close();
+    } catch (Exception $e) {
+        echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
     }
-
-    $stmt->bind_param("issddddd", $user_id, $meal_type, $food_item, $serving_size, $calories, $protein, $carbs, $fat);
-
-    if ($stmt->execute()) {
-        header('Content-Type: application/json');
-        echo json_encode(['status' => 'success', 'message' => 'Meal logged successfully']);
-    } else {
-        header('Content-Type: application/json');
-        echo json_encode(['status' => 'error', 'message' => 'Could not log the meal']);
-    }
-
-    $stmt->close();
     exit;
 }
 
@@ -459,6 +469,7 @@ if ($row = $result->fetch_assoc()) {
                 }
 
                 const formData = new FormData();
+                formData.append('action', 'logMeal');  // Add action parameter
                 formData.append('mealType', mealType);
                 formData.append('foodItem', foodItem);
                 formData.append('servingSize', servingSize);
@@ -545,6 +556,7 @@ if ($row = $result->fetch_assoc()) {
 
         function saveWaterIntake() {
             const formData = new FormData();
+            formData.append('action', 'updateWater');
             formData.append('glasses', currentGlasses);
 
             fetch('diet.php', {

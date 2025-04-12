@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Check if user is logged in
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         if ($stmt->execute()) {
             $message = "Exercise logged successfully!";
-            // Clear form data after successful submission
+           
             $_POST = array();
         } else {
             $error = "Error: " . $stmt->error;
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-// Fetch user's recent exercises
+
 $user_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM exercises WHERE user_id = ? ORDER BY date DESC LIMIT 5";
 $stmt = $conn->prepare($sql);
