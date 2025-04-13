@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="contact.css">
 </head>
 <body>
+
+
+<ul class="nav-bar">
+        <li><a href="index.php">Home</a></li>
+        <li><a href="services.php">Services</a></li>
+        <li><a href="about.php">About Us</a></li>
+        <li><a href="contact.php">Contact Us</a></li>
+    </ul>
     <div class="container">
         <h2>Contact Us</h2>
         <p>Leave a message and we will get back to you shortly</p>
